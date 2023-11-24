@@ -28,7 +28,7 @@ long long unsigned Combinari(int n, int m) {
 int main() {
     int n = 100, m = 98;
 
-    cout << "Proiectul nr. 2 al studentului Oala Oleg, grupa IS11Z. Elemente de combinatorica" << endl << endl;
+    cout << "Proiectul nr. 2 al studentului Ciubara Corneliu, grupa IS11Z. Elemente de combinatorica" << endl << endl;
     cout << "Elemente din combinatorica" << endl;
     
     cout << "Factorial iterativ" << endl;
