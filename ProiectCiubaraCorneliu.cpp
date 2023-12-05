@@ -1,58 +1,68 @@
 #include <iostream>
+#include <vector>
+#include <limits>
+
 using namespace std;
 
-int main() {
-    int a[20][20], s[20], n, m, i, j, k, ok;
+struct Edge {
+    int source, destination, weight;
+};
 
-    cout << "Numar de varfuri=";
-    cin >> n;
+void bellmanFord(vector<Edge>& edges, int numNodes, int source) {
+    vector<int> distance(numNodes, numeric_limits<int>::max());
+    distance[source] = 0;
 
-    for(i = 0; i < n; i++)
-        for(j = i + 1; j < n; j++) {
-            cout << "a[" << i << "," << j << "]=";
-            cin >> a[i][j];
-            a[j][i] = a[i][j];
+    // Relaxation step
+    for (int i = 1; i <= numNodes - 1; ++i) {
+        for (const auto& edge : edges) {
+            int u = edge.source;
+            int v = edge.destination;
+            int weight = edge.weight;
+            if (distance[u] != numeric_limits<int>::max() && distance[u] + weight < distance[v]) {
+                distance[v] = distance[u] + weight;
+            }
         }
-
-    cout << "Numar de elemente din secventa ";
-    cin >> k;
-
-    for(i = 0; i < k; i++) {
-        cout << "s[" << i << "]=";
-        cin >> s[i];
     }
 
-    ok = 1;
+    // Check for negative cycles
+    for (const auto& edge : edges) {
+        int u = edge.source;
+        int v = edge.destination;
+        int weight = edge.weight;
+        if (distance[u] != numeric_limits<int>::max() && distance[u] + weight < distance[v]) {
+            cout << "Graful conține un ciclu de cost negativ!" << endl;
+            return;
+        }
+    }
 
-    // This might need to be `if (n != k)` depending on the requirements
-    if(n != k) ok = 0;
-
-    if(ok) {
-        if(s[0] != s[k-1]) ok = 0;
-        if(ok) {
-            for(i = 0; i < k - 1; i++) {
-                for(j = i + 1; j < k; j++) {
-                    if(s[i] == s[j]) ok = 0;
-                }
-            }
-
-            if(ok) {
-                for(i = 0; i < k - 1; i++) {
-                    if(a[s[i]][s[i + 1]] == 0) ok = 0;
-                }
-                if(!ok)
-                    cout << "Exista noduri intre care nu avem muchie";
-                else
-                    cout << "Secventa data este ciclu hamiltonian";
-            } else {
-                cout << "Nodurile nu sunt distincte";
-            }
+    // Afisare rezultate
+    cout << "Distanțele minime de la nodul sursă " << source << " către celelalte noduri sunt:" << endl;
+    for (int i = 0; i < numNodes; ++i) {
+        cout << "Nodul " << i << ": ";
+        if (distance[i] == numeric_limits<int>::max()) {
+            cout << "Infinit" << endl;
         } else {
-            cout << "Extremitatile nu coincid";
+            cout << distance[i] << endl;
         }
-    } else {
-        cout << "Insuficiente noduri";
     }
+}
+
+int main() {
+    int numNodes, numEdges;
+    cout << "Introduceți numărul de noduri și de muchii: ";
+    cin >> numNodes >> numEdges;
+
+    vector<Edge> edges(numEdges);
+    cout << "Introduceți nodul sursă, nodul destinație și ponderea pentru fiecare muchie:" << endl;
+    for (int i = 0; i < numEdges; ++i) {
+        cin >> edges[i].source >> edges[i].destination >> edges[i].weight;
+    }
+
+    int sourceNode;
+    cout << "Introduceți nodul sursă: ";
+    cin >> sourceNode;
+
+    bellmanFord(edges, numNodes, sourceNode);
 
     return 0;
 }
