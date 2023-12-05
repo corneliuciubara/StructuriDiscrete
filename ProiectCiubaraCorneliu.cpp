@@ -12,7 +12,6 @@ void bellmanFord(vector<Edge>& edges, int numNodes, int source) {
     vector<int> distance(numNodes, numeric_limits<int>::max());
     distance[source] = 0;
 
-    // Relaxation step
     for (int i = 1; i <= numNodes - 1; ++i) {
         for (const auto& edge : edges) {
             int u = edge.source;
@@ -24,7 +23,6 @@ void bellmanFord(vector<Edge>& edges, int numNodes, int source) {
         }
     }
 
-    // Check for negative cycles
     for (const auto& edge : edges) {
         int u = edge.source;
         int v = edge.destination;
@@ -35,7 +33,6 @@ void bellmanFord(vector<Edge>& edges, int numNodes, int source) {
         }
     }
 
-    // Afisare rezultate
     cout << "Distanțele minime de la nodul sursă " << source << " către celelalte noduri sunt:" << endl;
     for (int i = 0; i < numNodes; ++i) {
         cout << "Nodul " << i << ": ";
