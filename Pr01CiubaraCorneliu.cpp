@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <cstdlib>
 using namespace std;
+
+
+
 void Line(char lf, char ln, char md, char rt, int nc = 2)
 {
     int i;
@@ -20,22 +23,15 @@ void Line(char lf, char ln, char md, char rt, int nc = 2)
 
 
 
-
-
-
-
-
-
-
 int main()
 {
-
-
-    int a, b, c;
+    cout << endl;
+    int a, b, c, d;
     system("color F0");
     system("cls");
     cout << "Proiect numarul 1, elaborat de Ciubara Corneliu!" << endl;
     cout << "Tema: Operatii cu multimi\n";
+    cout << endl;
 
 
 
@@ -47,7 +43,9 @@ int main()
         printf("%c %d %c %3d %3c\n",
                186, a, 179, !a, 186);
     Line(200, 205, 207, 188);
-cout << endl;
+    cout << endl;
+
+
 
     cout << "\tConjunctia (Intersectie):\n";
     Line(201, 205, 209, 187, 3);
@@ -59,9 +57,6 @@ cout << endl;
                    186, a, 179, b, 179, a & b, 186);
     Line(200, 205, 207, 188, 3);
     cout << endl;
-    //
-
-
 
 
 
@@ -75,7 +70,8 @@ cout << endl;
                    186, a, 179, b, 179, a | b, 186);
     Line(200, 205, 207, 188, 3);
     cout << endl;
-    //
+
+
 
     cout << "\tDiferenta:\n";
     Line(201, 205, 209, 187, 3);
@@ -89,6 +85,7 @@ cout << endl;
     cout << endl;
 
 
+
     cout << "\tDiferenta simetrica:\n";
     Line(201, 205, 209, 187, 3);
     printf("%c A %c B %cA xor B%c\n", 186, 179, 179, 186);
@@ -98,9 +95,11 @@ cout << endl;
             printf("%c %d %c %d %c %3d %3c\n",
                    186, a, 179, b, 179, a ^ b, 186);
     Line(200, 205, 207, 188, 3);
-cout << endl;
+    cout << endl;
 
-cout << "\tConectorul Sheffer:\n";
+
+
+    cout << "\tConectorul Sheffer:\n";
     Line(201, 205, 209, 187, 3);
     printf("%c A %c B %cA and B%c\n", 186, 179, 179, 186);
     Line(199, 196, 197, 182, 3);
@@ -113,7 +112,7 @@ cout << "\tConectorul Sheffer:\n";
 
 
 
-cout << "\tConectorul Pierce:\n";
+    cout << "\tConectorul Pierce:\n";
     Line(201, 205, 209, 187, 3);
     printf("%c A %c B %cA and B%c\n", 186, 179, 179, 186);
     Line(199, 196, 197, 182, 3);
@@ -125,6 +124,7 @@ cout << "\tConectorul Pierce:\n";
     cout << endl;
 
 
+
     cout << "\tImplicatia:\n";
     Line(201, 205, 209, 187, 3);
     printf("%c A %c B %cA and B%c\n", 186, 179, 179, 186);
@@ -134,19 +134,23 @@ cout << "\tConectorul Pierce:\n";
             printf("%c %d %c %d %c %3d %3c\n",
                    186, a, 179, b, 179, (!a) | b, 186);
     Line(200, 205, 207, 188, 3);
-cout << endl;
+    cout << endl;
+
 
 
     cout << "\tProfesor-Student:\n";
-    Line(201, 205, 209, 187, 4);
-    printf("%c P %cS1 %cS2 %c   L   %c\n", 186, 179, 179, 179, 186);
-    Line(199, 196, 197, 182, 4);
+    Line(201, 205, 209, 187, 5);
+    printf("%c P %cS1 %cS2 %cS3 %c   L   %c\n", 186, 179, 179, 179, 179, 186);
+    Line(199, 196, 197, 182, 5);
     for (a = 0; a <= 1; a++)
         for (b = 0; b <= 1; b++)
             for (c = 0; c <= 1; c++)
-                printf("%c %d %c %d %c %d %c %3d %3c\n",
-                       186, a, 179, b, 179, c, 179, a & (b | c), 186);
-    Line(200, 205, 207, 188, 4);
+                for (d = 0; d <= 1; d++)
+                printf("%c %d %c %d %c %d %c %d %c %3d %3c\n",
+                       186, a, 179, b, 179, c, 179, d, 179, a & (b | c), 186);
+    Line(200, 205, 207, 188, 5);
+
+
 
     return 0;
 }
