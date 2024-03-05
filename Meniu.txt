@@ -1,0 +1,182 @@
+#include <iostream>
+#include <conio.h>
+#define NMAX 100
+
+using namespace std;
+//Interrfata programului
+int ReadArray(int n, int a[]);//la intrare n nr de note  la iesire - a: tabloul (lista de note )  F-a returneaza  1 ok, 0 error fals
+void  PreView( int n, int a[],char[]);
+int Minim(int n, int a[]);
+int Maxim(int n, int a[]);
+int Aranjare(int n, int a[]);
+float Media(int n, int a[]);
+int Rotire(int n, int a[]);
+int Inserare(int &n, int a[], int val);
+int Inserare(int n, int a[], int val, char);
+int Inserare(int n, int a[], int val,int k);
+int Inserare(int n, int a[], int val,int k, char);
+int Remove(int &n, int a[],int val);
+int Cautare(int n, int a[]);
+int Clasifiacare(int &n, int a[],int val);
+int main()
+{
+    int n = 10;
+    int note[NMAX] = {3,7,6,8,9,10,2,1,5,4};
+    int optiune=1;
+    cout << "\nProect Nr:3 Oala Oleg " << endl;
+    cout << "Tema: Tablou de numere > Notele Elevilor" << endl;
+    //citirea datelor
+    do
+    {
+        system("cls");
+        cout << "\nProect Nr:3 Oala Oleg " << endl;
+        cout << "Tema: Tablou de numere > Notele Elevilor" << endl;
+        cout << "\n 1. Minim/Maxim";
+        cout << "\n 2. Media";
+        cout << "\n 3. Aranjare";
+        cout << "\n 4. Rotire la dreapta cu 9 pozitii"; //de rotit cu n pozitii n este varianta
+        cout << "\n 5. Inserare";
+        cout << "\n 6. Stergere";
+        cout << "\n 7. Clasificare";
+        cout << "\n 8. Cautare";
+        cout << "\n 2. ";
+        cout << "\n 2. ";
+        cout << "\n 0. Stop";
+        cout << "\n\n\t Alege de la 0 pana la 10 -> ";
+        cin >> optiune;
+        switch(optiune)
+        {
+        case 1 :
+            PreView(n, note,"initial");
+            cout << "\n Nota minima: "<< Minim(n,note);
+            cout << "\n Nota maxima: "<< Maxim(n,note);
+            break;
+        case 2 :
+            PreView(n, note,"initial");
+            cout << "\nMedia \n";printf("%2.2F", Media(n,note));
+            break;
+        case 3 :
+            PreView(n, note,"initial");
+            Aranjare(n,note);
+            PreView(n, note,"aranjat");
+            break;
+        case 4 :
+            PreView(n, note,"initial");
+            Rotire(n,note);
+            PreView(n, note,"rotit");
+            break;
+        }
+
+        getch();
+
+    }
+    while(optiune);
+
+
+    return 0;
+}
+int ReadArray(int n, int a[])
+{
+
+    return 1;
+
+}
+void PreView(int n, int a[], char sir[])
+{
+
+    cout << "\nTabloul "<<sir<<" de note \n";
+    for( int i = 0; i<n; i++)
+        cout << ' '<<a[i];
+
+}
+int Minim(int n, int a[])
+{
+    int i;
+    int aux;
+    aux = a[0];
+    for(i = 1; i<n; i++)
+    {
+        if(a[i] < aux) aux = a[i];
+    }
+
+    return aux;
+}
+int Maxim(int n, int a[])
+{
+    int i;
+    int aux;
+    aux = a[0];
+    for(i = 1; i<n; i++)
+    {
+        if(a[i] > aux) aux = a[i];
+    }
+
+    return aux;
+}
+float Media(int n, int a[])
+{
+    int sum = 0;
+    for(int i = 0; i < n; i++)
+    {
+        sum += a[i];
+    }
+    return (float)sum/n;
+}
+int Aranjare(int n, int a[])
+{
+    int i, k, aux;
+    for(k = 0; k<n-1; k++)
+    {
+
+        for(i = k+ 1; i<n; i++)
+        {
+            if(a[k] > a[i])
+            {
+                aux = a[k];
+                a[k] = a[i];
+                a[i] = a[aux];
+            }
+        }
+    }
+
+    return 1;
+}
+int Rotire(int n, int a[])
+{
+    int i, aux;
+    aux = a[n-1];//aux = a[n-1];
+    for(i=n-1; i>=0;i--) //i=n-1; i>=0:i--
+        a[i] = a[i-1];      //a[i] =a[i-1]
+    a[0] =aux;            //a[0] = aux;
+
+}
+int Inserare(int &n, int a[], int val)
+{
+    return  1;
+}
+int Inserare(int n, int a[], int val, char)
+{
+    return  1;
+}
+int Inserare(int n, int a[], int val,int k)
+{
+    return  1;
+}
+int Inserare(int n, int a[], int val,int k, char)
+{
+    return  1;
+}
+int Remove(int &n, int a[],int val)
+{
+    return  1;
+}
+int Cautare(int n, int a[])
+{
+    return  1;
+}
+int Clasifiacare(int &n, int a[],int val)
+{
+    return  1;
+}
+
+
