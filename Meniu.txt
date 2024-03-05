@@ -122,23 +122,16 @@ float Media(int n, int a[])
     }
     return (float)sum/n;
 }
-int Aranjare(int n, int a[])
-{
-    int i, k, aux;
-    for(k = 0; k<n-1; k++)
-    {
-
-        for(i = k+ 1; i<n; i++)
-        {
-            if(a[k] > a[i])
-            {
-                aux = a[k];
-                a[k] = a[i];
-                a[i] = a[aux];
+int Aranjare(int n, int a[]) {
+    for(int i = 0; i < n-1; i++) {
+        for(int j = i+1; j < n; j++) {
+            if(a[i] > a[j]) {
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
             }
         }
     }
-
     return 1;
 }
 int Rotire(int n, int a[])
@@ -178,5 +171,3 @@ int Clasifiacare(int &n, int a[],int val)
 {
     return  1;
 }
-
-
