@@ -29,7 +29,7 @@ int main()
     do
     {
         system("cls");
-        cout << "\nProect Nr:3 Oala Oleg " << endl;
+        cout << "\nProect Nr: 3 Ciubara Corneliu " << endl;
         cout << "Tema: Tablou de numere > Notele Elevilor" << endl;
         cout << "\n 1. Minim/Maxim";
         cout << "\n 2. Media";
@@ -39,8 +39,6 @@ int main()
         cout << "\n 6. Stergere";
         cout << "\n 7. Clasificare";
         cout << "\n 8. Cautare";
-        cout << "\n 2. ";
-        cout << "\n 2. ";
         cout << "\n 0. Stop";
         cout << "\n\n\t Alege de la 0 pana la 10 -> ";
         cin >> optiune;
