@@ -23,7 +23,7 @@ int main()
     int n = 10;
     int note[NMAX] = {3,7,6,8,9,10,2,1,5,4};
     int optiune=1;
-    cout << "\nProect Nr:3 Oala Oleg " << endl;
+    cout << "\nProect Nr:3 Ciubara Corneliu " << endl;
     cout << "Tema: Tablou de numere > Notele Elevilor" << endl;
     //citirea datelor
     do
