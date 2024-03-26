@@ -1,0 +1,121 @@
+#include <iostream>
+#include <vector>
+#include <algorithm> // Pentru sort
+#include <numeric>   // Pentru accumulate
+using namespace std;
+
+// Func?ie pentru citirea datelor
+void citesteDate(vector<int>& vec) {
+    int n, val;
+    cout << "Introduceti numarul de persoane: ";
+    cin >> n;
+    for(int i = 0; i < n; ++i) {
+        cout << "Varsta persoanei " << i+1 << ": ";
+        cin >> val;
+        vec.push_back(val);
+    }
+}
+
+// Func?ie pentru afi?area datelor
+void afiseazaDate(const vector<int>& vec) {
+    for(int val : vec) {
+        cout << val << " ";
+    }
+    cout << "\n";
+}
+
+// Determinarea valorii minime ?i maxime
+void minMax(const vector<int>& vec, int& min, int& max) {
+    min = *min_element(vec.begin(), vec.end());
+    max = *max_element(vec.begin(), vec.end());
+}
+
+// Calculul mediei aritmetice
+double mediaAritmetica(const vector<int>& vec) {
+    double suma = accumulate(vec.begin(), vec.end(), 0.0);
+    return suma / vec.size();
+}
+
+// Sortarea datelor
+void sorteaza(vector<int>& vec, bool crescator = true) {
+    if(crescator) {
+        sort(vec.begin(), vec.end());
+    } else {
+        sort(vec.rbegin(), vec.rend());
+    }
+}
+
+// Rotirea elementelor
+void roteste(vector<int>& vec, int k, bool laDreapta = true) {
+    k %= vec.size(); // Pentru cazul in care k este mai mare decat dimensiunea vectorului
+    if(laDreapta) {
+        rotate(vec.begin(), vec.begin() + vec.size() - k, vec.end());
+    } else {
+        rotate(vec.begin(), vec.begin() + k, vec.end());
+    }
+}
+
+// Adaugarea de date
+void adaugaDate(vector<int>& vec, int val) {
+    vec.push_back(val);
+}
+
+// ?tergerea datelor
+void stergeDate(vector<int>& vec, int val) {
+    vec.erase(remove(vec.begin(), vec.end(), val), vec.end());
+}
+
+// Func?ie pentru o caracteristica specifica (exemplu: numarul de persoane cu varste intre 20 ?i 30 de ani)
+int numarPersoaneInterval(const vector<int>& vec, int min, int max) {
+    return count_if(vec.begin(), vec.end(), [min, max](int val) { return val >= min && val <= max; });
+}
+
+// Generarea unui tabel de varste aleatorii
+void genereazaTabel(vector<int>& vec, int n, int minVarsta, int maxVarsta) {
+    vec.clear(); // Cura?am vectorul existent
+    for(int i = 0; i < n; ++i) {
+        int varsta = minVarsta + rand() % (maxVarsta - minVarsta + 1);
+        vec.push_back(varsta);
+    }
+}
+
+int main() {
+    vector<int> varste;
+    citesteDate(varste);
+    afiseazaDate(varste);
+
+    int min, max;
+    minMax(varste, min, max);
+    cout << "Minima: " << min << ", Maxima: " << max << endl;
+
+    cout << "Media aritmetica: " << mediaAritmetica(varste) << endl;
+
+    sorteaza(varste);
+    cout << "Sortate crescator: ";
+    afiseazaDate(varste);
+
+    // Asumam k = 3 pentru exemplu, ?i rotire la dreapta
+    roteste(varste, 3, true);
+    cout << "Rotite la dreapta de 3 ori: ";
+    afiseazaDate(varste);
+
+    // Exemplu de adaugare ?i ?tergere
+    adaugaDate(varste, 25);
+    cout << "Dupa adaugare: ";
+    afiseazaDate(varste);
+
+    stergeDate(varste, 25);
+    cout << "Dupa stergere: ";
+    afiseazaDate(varste);
+
+    // Caracteristica specifica
+    int persoaneInterval = numarPersoaneInterval(varste, 20, 30);
+    cout << "Numar persoane intre 20 si 30 ani: " << persoaneInterval << endl;
+
+    // Generarea unui nou tabel
+    genereazaTabel(varste, 20, 18, 60);
+    cout << "Tabel generat aleatoriu: ";
+    afiseazaDate(varste);
+
+    return 0;
+}

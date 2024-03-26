@@ -1,0 +1,65 @@
+#include <iostream>
+#include <vector>
+#include <limits>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Introduceti numarul de persoane: ";
+    cin >> n;
+
+    if(n < 10 || n > 20) {
+        cout << "Numarul de persoane trebuie sa fie intre 10 si 20." << endl;
+        return 1;
+    }
+
+    vector<int> varste(n);
+    int min = numeric_limits<int>::max();
+    int max = numeric_limits<int>::min();
+    int suma = 0;
+
+    cout << "Introduceti varstele persoanelor: ";
+    for(int i = 0; i < n; i++) {
+        cin >> varste[i];
+        if(varste[i] < min) min = varste[i];
+        if(varste[i] > max) max = varste[i];
+        suma += varste[i];
+    }
+
+    int decalaj = max - min;
+    double medie = static_cast<double>(suma) / n;
+
+    int valoareComparativa;
+    cout << "Introduceti o valoare pentru comparatie: ";
+    cin >> valoareComparativa;
+
+    int maiMari = 0, maiMici = 0, egale = 0;
+    for(int varsta : varste) {
+        if(varsta > valoareComparativa) maiMari++;
+        else if(varsta < valoareComparativa) maiMici++;
+        else egale++;
+    }
+
+    cout << "Minima: " << min << ", Maxima: " << max << ", Decalaj: " << decalaj << endl;
+    cout << "Media varstelor: " << medie << endl;
+    cout << "Mai mari: " << maiMari << ", Mai mici: " << maiMici << ", Egale: " << egale << endl;
+
+    // Clasificarea varstelor
+    int copii = 0, adolescenti = 0, adulti = 0, seniori = 0;
+    for(int varsta : varste) {
+        if(varsta <= 12) copii++;
+        else if(varsta <= 18) adolescenti++;
+        else if(varsta <= 65) adulti++;
+        else seniori++;
+    }
+
+    cout << "Copii: " << copii << ", Adolescenti: " << adolescenti
+              << ", Adulti: " << adulti << ", Seniori: " << seniori << endl;
+
+    // Raportul tinerilor (considerand tinerii ca fiind pana in 18 ani)
+    double raportTineri = static_cast<double>(copii + adolescenti) / n * 100;
+    cout << "Procentul de tineri (copii si adolescenti) in familie/echipa este: "
+              << raportTineri << "%" << endl;
+
+    return 0;
+}

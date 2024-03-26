@@ -1,0 +1,58 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// Func?ia care verifica daca un numar este prim
+bool estePrim(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
+
+// Func?ia care inverseaza un numar
+int inverseazaNumar(int n) {
+    int invers = 0;
+    while (n > 0) {
+        invers = invers * 10 + n % 10;
+        n /= 10;
+    }
+    return invers;
+}
+
+// Func?ia principala
+int main() {
+    int a, b, nr, n;
+    cout << "Introduceti numarul nr pentru verificare: ";
+    cin >> nr;
+    if (estePrim(nr) && estePrim(inverseazaNumar(nr))) {
+        cout << "Numarul " << nr << " este prim si inversabil prim.\n";
+    } else {
+        cout << "Numarul " << nr << " nu satisface conditiile.\n";
+    }
+
+    cout << "Introduceti limitele intervalului [a, b]: ";
+    cin >> a >> b;
+    cout << "Numere prime si inversabile prime in intervalul dat: ";
+    for (int i = a; i <= b; i++) {
+        if (estePrim(i) && estePrim(inverseazaNumar(i))) {
+            std::cout << i << " ";
+        }
+    }
+    cout << "\n";
+
+    cout << "Introduceti n pentru a afisa primele n numere prime inversabile: ";
+    cin >> n;
+    int count = 0, current = 2;
+    while (count < n) {
+        if (estePrim(current) && estePrim(inverseazaNumar(current))) {
+            cout << current << " ";
+            count++;
+        }
+        current++;
+    }
+    cout << "\n";
+    
+    return 0;
+}
