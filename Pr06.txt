@@ -1,0 +1,52 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Definiția structurii pentru datele zodiacului
+struct ZodiacPerson {
+    int id;
+    string nume;
+    int zi, luna, an;
+    string zodie;
+    string piatra;
+    int cifraNorocoasa;
+};
+
+// Funcție pentru citirea datelor dintr-un fișier text și încărcarea lor într-un vector de structuri
+vector<ZodiacPerson> citesteDate(string numeFisier) {
+    vector<ZodiacPerson> listaPersoane;
+    ifstream fisier(numeFisier);
+    if (!fisier) {
+        cerr << "Eroare la deschiderea fisierului!" << endl;
+        exit(1);
+    }
+    // Citirea datelor din fișier
+    // Implementați această parte în funcție de structura fișierului text
+    return listaPersoane;
+}
+
+// Funcție pentru scrierea datelor într-un fișier binar
+void scrieDateBinar(vector<ZodiacPerson> &listaPersoane, string numeFisier) {
+    ofstream fisier(numeFisier, ios::binary);
+    if (!fisier) {
+        cerr << "Eroare la crearea fisierului binar!" << endl;
+        exit(1);
+    }
+    // Scrierea datelor în fișierul binar
+    fisier.write(reinterpret_cast<char*>(&listaPersoane[0]), listaPersoane.size() * sizeof(ZodiacPerson));
+    fisier.close();
+}
+
+// Funcția principală
+int main() {
+    // Citirea datelor din fișierul text
+    vector<ZodiacPerson> listaPersoane = citesteDate("date_zodiac.txt");
+
+    // Scrierea datelor în fișierul binar
+    scrieDateBinar(listaPersoane, "date_zodiac.bin");
+
+    return 0;
+}
